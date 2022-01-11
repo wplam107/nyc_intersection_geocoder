@@ -55,7 +55,7 @@ for ele in result.elements():
 
 {'highway': 'residential', 'name': 'North 4th Street', 'oneway': 'yes', 'tiger:cfcc': 'A41', 'tiger:county': 'Kings, NY', 'tiger:name_base': '4th', 'tiger:name_direction_prefix': 'N', 'tiger:name_type': 'St', 'tiger:zip_left': '11211', 'tiger:zip_right': '11211'}
 ```
-One section of `North 4th Street` is tagged with `'Kings, NY'` while the other section does not.
+One section of `North 4th Street` is tagged with `'Kings, NY'` while the other section does not.  In this example, the first section coincides with the intersection point of `North 4th Street` and `Wythe Avenue`.
 
 ## Solution:
 Merging all street sections with the same name in the same geographic county into a `shapely` `MultiLineString` object.
