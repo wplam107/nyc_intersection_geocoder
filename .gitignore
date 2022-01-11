@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Test env and internal tests
+/geocoder-env
+/cache
+/internal_tests
+.DS_Store
