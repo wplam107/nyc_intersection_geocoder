@@ -5,6 +5,18 @@ from shapely.geometry.point import Point
 from OSMPythonTools.nominatim import Nominatim, NominatimResult
 from OSMPythonTools.overpass import overpassQueryBuilder, Overpass
 
+boro_dict = {
+    'Manhattan': 'New York',
+    'New York': 'New York',
+    'Brooklyn': 'Kings',
+    'Kings': 'Kings',
+    'Queens': 'Queens',
+    'Bronx': 'Bronx',
+    'The Bronx': 'Bronx',
+    'Staten Island': 'Richmond',
+    'Richmond': 'Richmond'
+}
+
 class IntersectionGC:
     def __init__(self):
         self.nominatim = Nominatim()
@@ -22,8 +34,9 @@ class IntersectionGC:
         county: str) -> Point:
         """
         Retrieves street intersection Point(lon, lat) from OSM.
-        Streets and county name (i.e. 'Kings') required.
+        County/boro name (i.e. 'Kings' or 'Brooklyn') required.
         """
+        county = boro_dict[county]
         coords1 = self._get_street_geo(
             self._clean_street(street1),
             county
@@ -134,6 +147,8 @@ class IntersectionGC:
             street = street.split(' Blvd')[0] + ' Boulevard'
         if ' Ct' in street:
             street = street.split(' Ct')[0] + ' Court'
+        if ' Ln' in street:
+            street = street.split(' Ln')[0] + ' Lane'
 
         return street
 
